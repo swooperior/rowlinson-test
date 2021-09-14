@@ -1,0 +1,64 @@
+Delivered-To: orders@company.com
+Received: by 2002:ab4:9a12:0:0:0:0:0 with SMTP id q18csp583025ecy;
+        Wed, 21 Apr 2021 09:49:37 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJxwbfU9un6yf5+pmZA78KA4SKMnxBNMtlFuqr8H83CDU7zWxAq5ENiMm6/XU/5NWextDytL
+X-Received: by 2002:a05:600c:21c2:: with SMTP id x2mr10712881wmj.161.1619023777438;
+        Wed, 21 Apr 2021 09:49:37 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1619023777; cv=none;
+        d=google.com; s=arc-20160816;
+        b=afpvbIa/z8DKXViyPmXi+tf9c78anrKMnAVceu1sobqzK9LFEmvbb7CUX9CyeV24Wc
+         fFpziPr7qaN6fQUKqO0nr6SVwO279NquTliEGsgqIjNmasx2vJ5X7eN9gIQUbwoDBoi7
+         jXN1A4lO+DbIq8qQbLgB14v2HcYdt1g5TrQ1xQ0GJuU60ufXb5aH180HLCN7R/vSmwS2
+         M8/NhMHCIekE84T38cxsBFZ4fLRQfw7NCw3itndgVGsaug3emt9HwJSa8IWhQdgz9SCw
+         o9AjYeaC2Glt6TN80eF6eB5z0/+IJYI1p/5W98mDtBviJtWLIxN288pCwr94B5Cex3+O
+         Onhw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=feedback-id:date:message-id:content-transfer-encoding:mime-version
+         :subject:to:from:dkim-signature:dkim-signature;
+        bh=m/UmN8g/9JlkgLmZKPwcV4PNrliT6RqqKL1d1tqWxA8=;
+        b=fHS+msauFaX+9DlZiX6bYzlrqeasxqgapiCapTXwq5KzI6wsZgfH2hOYSp3gGeto5R
+         7VV9TgZYDr+VHxlPaciKY+PxpHbdnQidnZiJoLnWYCYUlJgsKQ1JURy+sMjbNExp6ubM
+         po6HFHR2tGgQclLuem+EkTSq5t600KdZXL+6vcXDB9yt9NW9h18mr+i+4/cgytiHCWys
+         AiScjMwRWPsUWastGqyZGInFG4OX5VX4CedP8HbfPtb475O+cNVTxqy6RkfXX4PIeGS2
+         VlJVKzRy/hY9KbzyUaLNFzYneV8L+ToKCPt0kxVFwKlK2CE/jrPmv6Ob7Y51DVjuXutX
+         L/Hg==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@deliverx.co.uk header.s=7wvdxwq5phowdi2yjdq4vrs2g25rxbwy header.b=G8OFE01v;
+       dkim=pass header.i=@amazonses.com header.s=uku4taia5b5tsbglxyj6zym32efj7xqv header.b=Lbt8fxzn;
+       spf=pass (google.com: domain of 01020178f5564b36-4624bd65-e93d-4c08-ba58-7c4e6233bf3f-000000@eu-west-1.amazonses.com designates 54.240.53.232 as permitted sender) smtp.mailfrom=01020178f5564b36-4624bd65-e93d-4c08-ba58-7c4e6233bf3f-000000@eu-west-1.amazonses.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=deliverx.co.uk
+Return-Path: <01020178f5564b36-4624bd65-e93d-4c08-ba58-7c4e6233bf3f-000000@eu-west-1.amazonses.com>
+Received: from a53-232.smtp-out.eu-west-1.amazonses.com (a53-232.smtp-out.eu-west-1.amazonses.com. [54.240.53.232])
+        by mx.google.com with ESMTPS id i20si2639379wmq.191.2021.04.21.09.49.36
+        for <orders@company.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-SHA bits=128/128);
+        Wed, 21 Apr 2021 09:49:37 -0700 (PDT)
+Received-SPF: pass (google.com: domain of 01020178f5564b36-4624bd65-e93d-4c08-ba58-7c4e6233bf3f-000000@eu-west-1.amazonses.com designates 54.240.53.232 as permitted sender) client-ip=54.240.53.232;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@deliverx.co.uk header.s=7wvdxwq5phowdi2yjdq4vrs2g25rxbwy header.b=G8OFE01v;
+       dkim=pass header.i=@amazonses.com header.s=uku4taia5b5tsbglxyj6zym32efj7xqv header.b=Lbt8fxzn;
+       spf=pass (google.com: domain of 01020178f5564b36-4624bd65-e93d-4c08-ba58-7c4e6233bf3f-000000@eu-west-1.amazonses.com designates 54.240.53.232 as permitted sender) smtp.mailfrom=01020178f5564b36-4624bd65-e93d-4c08-ba58-7c4e6233bf3f-000000@eu-west-1.amazonses.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=deliverx.co.uk
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple; s=7wvdxwq5phowdi2yjdq4vrs2g25rxbwy; d=deliverx.co.uk; t=1619023776; h=From:To:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding:Message-ID:Date; bh=PBn7qyajv5y1rZHiITzANhoeybFG/jPTMjXdiHDIhxs=; b=G8OFE01vCN0GQJMYZXOfdpZ1/nlv0OnqCkjoToewSHPK3QJaDAzP4THNRMrziDV+ rXQRElclvUE2bSuiA2Yt6E3xrlmN2MTuzh2eObVkGa4CDaQDnswAd8WAZLMd64r7pn0 b/spZcGibb4P71EqTVzQdBW4TlP4NdTFmGJZfOCQ=
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple; s=uku4taia5b5tsbglxyj6zym32efj7xqv; d=amazonses.com; t=1619023776; h=From:To:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding:Message-ID:Date:Feedback-ID; bh=PBn7qyajv5y1rZHiITzANhoeybFG/jPTMjXdiHDIhxs=; b=Lbt8fxznDt9JkkN19gEG+3bE6IqhjSyRGk4uDAElfe84HAQzVjy21/lxpUxpKTQe hEa+SuBPs1KL4Qm6UBOHXcMUW0BVoetlbUlQFvAuSixxnGoa5ECWDMIzRn0/VAy7tav H67L6qSaov5eIgKflaNZUSDZ8uj/A9eeTKdBHlpE=
+From: Deliverx <donotreply@deliverx.co.uk>
+To: orders@company.com
+Subject: Your parcel is now with your local Deliverx courier for delivery
+MIME-Version: 1.0
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+Message-ID: <01020178f5564b36-4624bd65-e93d-4c08-ba58-7c4e6233bf3f-000000@eu-west-1.amazonses.com>
+Date: Wed, 21 Apr 2021 16:49:36 +0000
+Feedback-ID: 1.eu-west-1.X3gIe33kjshndhWdzEH8x+F9KpDOqf1TjlERRZ7jVOU=:AmazonSES
+X-SES-Outgoing: 2021.04.21-54.240.53.232
+
+
+Hi Rowlinson
+We've got your parcel and we're delivering it today.
+Between 1pm and 2pm.
+It'll be delivered to:
+Branch C
+Company B
+
+Tracking number
+701188855344862
