@@ -17,6 +17,14 @@ class ProcessOrderStatus implements ProcessOrderStatusInterface
         $this->orderStatusStorage = $orderStatusStorage;
     }
 
+    /**
+    *   Use Regex to parse and extract necissary data from emails.
+    *   
+    *   @param EmailInterface $email    The email object to parse
+    *   @return true    if email is parsed and store method is called successfully.
+    *   @return false   if sender is invalid or email is not properly parsed.
+    */
+
     public function extractOrderStatus(EmailInterface $email) : bool
     {
         $emailBody = $email->getEmail();
