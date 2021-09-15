@@ -3,6 +3,8 @@
 use PHPUnit\Framework\TestCase;
 use \TechnicalTest\OrderStatus\ProcessOrderStatus;
 
+use function PHPUnit\Framework\equalTo;
+
 class ProcessDeliveryEmailUpdateTest extends TestCase
 {
     protected $orderStatusStorageMock = null;
@@ -82,16 +84,17 @@ class ProcessDeliveryEmailUpdateTest extends TestCase
     public function testParseOtherSender(): void
     {
         // Load in sample email content
-        $emailRaw = file_get_contents('tests/fixtures/shipper-missed-parcel-a.txt');
+        $emailRaw = file_get_contents('tests/fixtures/shipper-accepted-parcel-invalid-sender.txt');
 
         $this->emailMock->method('getEmail')
             ->willReturn($emailRaw);
 
-        $this->orderStatusStorageMock->expects($this->once())
+        $this->orderStatusStorageMock
             ->method('store')
             ->with('701188855246861', 'Delivery Failed', new \DateTime('2021-05-25 09:55'));
 
-        $this->processEmailOrderStatus->extractOrderStatus($this->emailMock);
+        //Test that method returns false when an email from an invalid sender is recieved.
+        $this->assertFalse($this->processEmailOrderStatus->extractOrderStatus($this->emailMock));
     }
 
 }

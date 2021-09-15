@@ -23,6 +23,9 @@ class ProcessOrderStatus implements ProcessOrderStatusInterface
 
         //Extract sender
         preg_match('/From: Deliverx <donotreply@deliverx.co.uk>/', $emailBody, $senderMatches);
+        if($senderMatches == null){
+            return false;
+        }
         $sender = $senderMatches[0];
         //Check sender is valid
         if($sender === 'From: Deliverx <donotreply@deliverx.co.uk>')
